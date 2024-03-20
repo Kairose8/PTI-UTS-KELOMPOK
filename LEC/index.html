@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="topBar">
+        <h1>Data Mahasiswa</h1>
+    </div>
+
+    <hr>
+
+    <div id="secBar">
+            <h2 >안녕하세요, ౨ৎ ⋆ ｡˚ </h2>
+
+    </div>
+    
+    <hr>
+
+    <div>
+        <p>"Hiduplah seolah engkau mati besok. Belajarlah seolah engkau hidup selamanya." ‧˚₊⋅(Mahatma Gandhi)⋅₊˚‧</p>
+    </div>
+    <hr>
+    <div id="display-area">
+        <table id="mahasiswa-table">
+            <thead>
+                <tr>
+                    <th>NIM</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                </tr>
+            </thead>
+            <tbody>
+             </tbody>
+        </table>
+    </div>
+    
+    <div class="add-data-container">
+        <h2>Tambah Data Mahasiswa</h2>
+        <table>
+            <tr>
+                <th><label id="nim">NIM:</label></th>
+                <td><input type="text" id="nim" name="nim" required></td>
+                <td><span class="error-message" id="nim-error"></span></td>
+            </tr>
+            <tr>
+                <th><label id="nama">Nama Lengkap:</label></th>
+                <td><input type="text" id="nama" name="nama" required></td>
+                <td><span class="error-message" id="nama-error"></span></td>
+            </tr>
+            <tr>
+                <th><label id="alamat">Alamat:</label></th>
+                <td><input type="text" id="alamat" name="alamat" required></td>
+                <td><span class="error-message" id="alamat-error"></span></td>
+            </tr>
+        </table>
+        <button type="button" id="submit-button" onclick="insertOrUpdateRow()">Tambah Data</button>
+    </div>
+
+    <script>
+       function validateForm() {
+            var nim = document.getElementById('nim').value;
+            var nama = document.getElementById('nama').value;
+            var alamat = document.getElementById('alamat').value;
+    
+            if (!nim || !nama || !alamat) {
+                if (!nim) document.getElementById('nim-error').textContent = 'NIM is required';
+                if (!nama) document.getElementById('nama-error').textContent = 'Nama is required';
+                if (!alamat) document.getElementById('alamat-error').textContent = 'Alamat is required';
+                return false;
+            } else {
+                document.getElementById('nim-error').textContent = '';
+                document.getElementById('nama-error').textContent = '';
+                document.getElementById('alamat-error').textContent = '';
+                return true;
+            }
+        }
+    
+        function insertOrUpdateRow() {
+            if (validateForm()) {
+                var nim = document.getElementById('nim').value;
+                var nama = document.getElementById('nama').value;
+                var alamat = document.getElementById('alamat').value;
+
+                var table = document.getElementById('mahasiswa-table').getElementsByTagName('tbody')[0]; 
+
+                var newRow = table.insertRow(); 
+                var cell1 = newRow.insertCell(0); 
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+
+                cell1.textContent = nim; 
+                cell2.textContent = nama; 
+                cell3.textContent = alamat; 
+
+                resetForm(); 
+            }
+}
+
+        resetForm();
+    
+
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function insertRow(nim, nama, alamat) {
+            var table = document.getElementById("table-body");
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+    
+            cell1.innerHTML = nim;
+            cell2.innerHTML = nama;
+            cell3.innerHTML = alamat;
+            cell4.innerHTML = '<button onclick="editRow(this)">Edit</button> <button onclick="deleteRow(this)">Delete</button>';
+        }
+    
+        var rowToEdit = null;
+    
+        function editRow(btn) {
+            rowToEdit = btn.parentNode.parentNode;
+            document.getElementById('nim').value = rowToEdit.cells[0].innerHTML;
+            document.getElementById('nama').value = rowToEdit.cells[1].innerHTML;
+            document.getElementById('alamat').value = rowToEdit.cells[2].innerHTML;
+    
+            document.getElementById('submit-button').innerText = "Update Data";
+        }
+
+        function editData(nim, nama, alamat) {
+            editModal.style.display = 'block';
+            document.getElementById('nama').value = nama;
+            document.getElementById('alamat').value = alamat;
+        }
+        
+        function saveData() {
+            var nama = document.getElementById("nama").value;
+            var alamat = document.getElementById("alamat").value;
+            alert("Data telah diperbarui:\nNama: " + nama + "\nAlamat: " + alamat);
+            closeModal(); // buat nutup modal habis datanya disimpan
+        }
+        function updateRow(nim, nama, alamat) {
+            rowToEdit.cells[0].innerHTML = nim;
+            rowToEdit.cells[1].innerHTML = nama;
+            rowToEdit.cells[2].innerHTML = alamat;
+        }
+    
+        function deleteRow(btn) {
+            var row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    
+        function resetForm() {
+            document.getElementById('nim').value = '';
+            document.getElementById('nama').value = '';
+            document.getElementById('alamat').value = '';
+            document.getElementById('submit-button').innerText = "Tambah Data";
+            rowToEdit = null;
+        }
+    
+        var dt = new Date();
+        document.getElementById("tanggalwaktu").innerHTML = dt.toLocaleTimeString();
+    </script>
+            
