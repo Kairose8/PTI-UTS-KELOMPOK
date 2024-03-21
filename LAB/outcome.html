@@ -1,28 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outcome</title>
-    <link rel="stylesheet" href="style.css"></link>  
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> </head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Outcome</title>
+        <link rel="stylesheet" href="style.css"></link>  
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> </head>
+    </head>
+    <body>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10%;
+            }
 
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navBarMainPage">
-        <div id="logo">
-            <img src="Foto_pendukung/pngtree-money-bag-vector-png-image_7106786.png" alt="logo" >
+            #idOutcome {
+                font-size: 30px;
+            }
+            
+            .formOutcome label {
+                font-size: 25px;
+                margin-left: 0;
+            }
+
+            .outcomeNamaNominal input {
+                width: 350px;
+                background-color: lightgray;
+                border-width: 3px;
+                border-color: black;
+                border-radius: 5px;
+            }
+
+            #outcomeTypeList {
+                width: 350px;
+                background-color: lightgray;
+                border-width: 3px;
+                border-color: black;
+                border-radius: 5px;
+            }
+
+            .formOutcome button {
+                font-size: larger;
+                margin-left: 35%;
+                background-color: rgb(204, 0, 0);
+                border-radius: 20px;
+                width: 100px;
+                color: white;
+                border-color: red;
+            }          
+        </style>
+        
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="navBarMainPage">
+            <div id="logo">
+                <img src="Foto_pendukung/pngtree-money-bag-vector-png-image_7106786.png" alt="logo" >
+            </div>
+            <div id="menu">
+                <ul>
+                    <li>Hello,  </li>
+                    <li><a href="main.html">Main</a></li>
+                    <li><a href="outcome.html">Income</a></li>
+                    <li><a href="outcome.html"><p id="currPage">Outcome</p></a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h1 id="idOutcome">Tono's outcome</h1>
+            <form class="formOutcome">
+                <div class="outcomeNamaNominal">
+                    <label for="name">Transaction name</label>
+                    <br>
+                    <input type="text" id="outcomeNama" required />
+                </div>
+                <br>
+                <div class="outcomeNamaNominal">
+                    <label for="nominal">Transaction nominal</label>
+                    <br>
+                    <input type="number" id="outcomeNominal" required />
+                </div>
+                <br>
+                <div id="outcomeType">
+                    <label>Transaction type</label>
+                    <br>
+                    <select name="outcomeTypeList" id="outcomeTypeList">
+                        <option style="display: none;"></option>
+                        <option value="makan">Makan</option>
+                        <option value="main">Main</option>
+                        <option value="edukasi">Edukasi</option>
+                        <option value="belanja">Belanja</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                    <br><br>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
         </div>
-        <div id="menu">
-            <ul>
-                <li>Hello,  </li>
-                <li><a href="main.html">Main</a></li>
-                <li><a href="income.html">Income</a></li>
-                <li><a href="outcome.html"><p id="currPage">Outcome</p></a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-</body>
+
+        <script>
+            document.getElementById('outcomeForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var transactionName = document.getElementById('outcomeNama').value.trim();
+                var transactionNominal = document.getElementById('outcomeNominal').value.trim();
+                var transactionType = document.getElementById('outcomeTypeList').value;
+                
+                if (transactionName == '' || transactionNominal == '' || transactionType == '') {
+                    alert("Transaction incomplete, please fill out the form.");
+                } else {
+                    alert("Transaction success.");
+                }
+            });
+        </script>
+    </body>
 </html>
+
+      
+
+
