@@ -9,17 +9,11 @@
 
     <body>
         <style>
-            .container {
-                display: flex;
-                justify-content: center;
-            }
-
             #saldo {
                 margin-top: 15%;
                 background-color: gainsboro;
                 height: 300px;
                 width: 700px;
-                border-radius: 15px;
             }
 
             #daftarTransaksi {
@@ -41,7 +35,6 @@
                 height: 100px;
                 padding: 15px 0 15px 0;
                 margin: 10px auto 15px auto;
-                border-radius: 10px;
             }
 
             .container h4 {
@@ -76,15 +69,15 @@
                     </ul>
                 </div>
         </nav>
-        <div class="container">
-            <div id="saldo">
+        <div class="container d-flex justify-content-center">
+            <div id="saldo" class="rounded-4">
                 <h4>Balance</h>
                 <br>
                 <h2>Rp</h2>
                 <h1 id="saldoAmount"></h1>
                 </div>
             
-            <div id="daftarTransaksi">
+            <div id="daftarTransaksi" class="rounded-4">
                 <h4>Transaction</h4>
                 <div class="transactionMessage"></div>
                 <div class="transactionMessage"></div>

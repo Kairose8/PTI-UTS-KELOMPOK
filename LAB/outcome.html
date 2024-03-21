@@ -20,7 +20,7 @@
                 font-size: 30px;
             }
             
-            .formOutcome label {
+            #formOutcome label {
                 font-size: 25px;
                 margin-left: 0;
             }
@@ -41,7 +41,7 @@
                 border-radius: 5px;
             }
 
-            .formOutcome button {
+            #formOutcome button {
                 font-size: larger;
                 margin-left: 35%;
                 background-color: rgb(204, 0, 0);
@@ -68,18 +68,18 @@
         </nav>
 
         <div class="container">
-            <h1 id="idOutcome">Tono's outcome</h1>
-            <form class="formOutcome">
+            <h1 id="idOutcome">Tono's </h1>
+            <form id="formOutcome">
                 <div class="outcomeNamaNominal">
                     <label for="name">Transaction name</label>
                     <br>
-                    <input type="text" id="outcomeNama" required />
+                    <input type="text" id="outcomeNama" />
                 </div>
                 <br>
                 <div class="outcomeNamaNominal">
                     <label for="nominal">Transaction nominal</label>
                     <br>
-                    <input type="number" id="outcomeNominal" required />
+                    <input type="number" id="outcomeNominal" />
                 </div>
                 <br>
                 <div id="outcomeType">
@@ -93,22 +93,39 @@
                         <option value="belanja">Belanja</option>
                         <option value="lainnya">Lainnya</option>
                     </select>
-                    <br><br>
-                    <button type="submit">Submit</button>
                 </div>
+                <br>
+                <button type="submit">Submit</button>
             </form>
         </div>
 
         <script>
+            document.getElementById('formOutcome').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var transactionName = document.getElementById('outcomeNama').value.trim();
+                var transactionNominal = document.getElementById('outcomeNominal').value.trim();
+                var transactionType = document.getElementById('outcomeTypeList').value;
+                
+                if (transactionName === '' || transactionNominal === '' || transactionType === '') {
+                    alert("Transaction incomplete, please fill out the form.");
+                } else {
+                    alert("Transaction success.");
+                }
+            });
+
             document.addEventListener('DOMContentLoaded', function() {
                 const user = localStorage.getItem('username');
                 const usernameField = document.getElementById('loggedInUser');
+                const usernameOutcome = document.getElementById('idOutcome');
                 if (user) {
                     usernameField.textContent = 'Hello, ' + user + '!';
+                    usernameOutcome.textContent =  user + "'s Outcome";
                 } else {
                     usernameField.textContent = 'Hello, User!';
+                    usernameOutcome.textContent =  "User's " + 'Outcome';
                 }   
             });
+
         </script>
     </body>
 </html>

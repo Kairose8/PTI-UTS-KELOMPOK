@@ -20,7 +20,7 @@
                 font-size: 30px;
             }
             
-            .formIncome label {
+            #formIncome label {
                 font-size: 25px;
                 margin-left: 0;
             }
@@ -41,7 +41,7 @@
                 border-radius: 5px;
             }
 
-            .formIncome button {
+            #formIncome button {
                 font-size: larger;
                 margin-left: 35%;
                 background-color: rgb(204, 0, 0);
@@ -68,18 +68,18 @@
         </nav>
 
         <div class="container">
-            <h1 id="idIncome">Tono's income</h1>
-            <form class="formIncome">
+            <h1 id="idIncome"></h1>
+            <form id="formIncome">
                 <div class="incomeNamaNominal">
                     <label for="name">Transaction name</label>
                     <br>
-                    <input type="text" id="incomeNama" required />
+                    <input type="text" id="incomeNama" />
                 </div>
                 <br>
                 <div class="incomeNamaNominal">
                     <label for="nominal">Transaction nominal</label>
                     <br>
-                    <input type="text" id="incomeNominal" required />
+                    <input type="text" id="incomeNominal" />
                 </div>
                 <br>
                 <div id="incomeType">
@@ -93,21 +93,37 @@
                         <option value="belanja">Belanja</option>
                         <option value="lainnya">Lainnya</option>
                     </select>
-                    <br><br>
-                    <button type="submit">Submit</button>
                 </div>
+                <br>
+                <button type="submit">Submit</button>
             </form>
         </div>
 
         <script>
+            document.getElementById('formIncome').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var transactionName = document.getElementById('incomeNama').value.trim();
+                var transactionNominal = document.getElementById('incomeNominal').value.trim();
+                var transactionType = document.getElementById('incomeTypeList').value;
+                
+                if (transactionName === '' || transactionNominal === '' || transactionType === '') {
+                    alert("Transaction incomplete, please fill out the form.");
+                } else {
+                    alert("Transaction success.");
+                }
+            });
+
             document.addEventListener('DOMContentLoaded', function() {
                 const user = localStorage.getItem('username');
                 const usernameField = document.getElementById('loggedInUser');
+                const usernameIncome = document.getElementById('idIncome');
                 if (user) {
                     usernameField.textContent = 'Hello, ' + user + '!';
+                    usernameIncome.textContent =  user + "'s Income";
                 } else {
                     usernameField.textContent = 'Hello, User!';
-                }   
+                    usernameIncome.textContent =  "User's " + 'Income';
+                }
             });
         </script>
     </body>
