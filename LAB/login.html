@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>loginPage</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="contentLogin">
         <h1>MONEY TRACKER</h1>
         <img src="pngtree-money-bag-vector-png-image_7106786.png">
-        <form>
+        <form id="loginForm">
             <div>
                 <h3 class="loginPageHeader">INPUT YOUR NAME</h3>
-                <input id="inputNamaLogin" type="text" name="name">
+                <input id="inputNamaLogin" type="text" name="name" required>
                 <br><br>
-                <button id="tombolLogin" type="submit" >submit</button>
+                <button id="tombolLogin" type="submit" >Submit</button>
             </div>  
         </form>
-
     </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginPage = document.getElementById('loginForm');
+            loginPage.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const username = document.getElementById('inputNamaLogin').value;
+                if (username === ' ') {
+                    alert('Invalid username');
+                } else {
+                    localStorage.setItem('username', username);        
+                    window.location.href = 'main.html';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
