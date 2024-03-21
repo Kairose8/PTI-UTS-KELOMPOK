@@ -1,6 +1,9 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #e7eccf, #a0c5d3);
 }
+
+
 
 /* LOGIN PAGE */
 #contentLogin{
@@ -69,4 +72,10 @@ width: 60%;
 
 #logo img{
     max-width: 75px;
+}
+
+/* About Us Page */
+#logoSocial img{
+    max-height: 29px;
+    max-width: 30px;
 }
