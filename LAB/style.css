@@ -33,10 +33,9 @@ width: 60%;
 
 /* MAIN PAGE */
 #navBarMainPage{
-    width: 1000;
-    margin: 20px auto 0;
+
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 #menu ul{
@@ -49,6 +48,7 @@ width: 60%;
     display: inline-block;
     padding: 0;
     margin-left: 10px;  
+    color: white;
 }
 
 
@@ -56,7 +56,13 @@ width: 60%;
     text-decoration: none;
     font-weight: bold;
     padding: 5px 0;
+    color: white;
 }
+
+#currPage{
+    color: red;
+}
+
 #menu ul li a:hover, #menu ul li a.active{
     border-bottom: 5px solid;
 }
