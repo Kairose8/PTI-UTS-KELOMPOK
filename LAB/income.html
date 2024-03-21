@@ -58,7 +58,7 @@
             </div>
             <div id="menu">
                 <ul>
-                    <li>Hello,  </li>
+                    <li><p id="loggedInUser"></p></li>
                     <li><a href="main.html">Main</a></li>
                     <li><a href="income.html"><p id="currPage">Income</p></a></li>
                     <li><a href="outcome.html">Outcome</a></li>
@@ -98,6 +98,18 @@
                 </div>
             </form>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const user = localStorage.getItem('username');
+                const usernameField = document.getElementById('loggedInUser');
+                if (user) {
+                    usernameField.textContent = 'Hello, ' + user + '!';
+                } else {
+                    usernameField.textContent = 'Hello, User!';
+                }   
+            });
+        </script>
     </body>
 </html>
 
