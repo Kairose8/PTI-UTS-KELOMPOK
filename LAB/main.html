@@ -158,10 +158,11 @@
             <div id="saldo" class="rounded-4">
                 <h4>Balance</h>
                 <br>
-                <h2>Rp</h2>
+                <h2>Rp.</h2>
                 <h1 id="saldoAmount"></h1>
                 </div>
             
+
             <div id="daftarTransaksi" class="rounded-4">
                 <h4 id="textTransaction">Transaction</h4>
             </div>
@@ -176,6 +177,7 @@
                 // mainIncome = parseFloat(localStorage.getItem('totalIncome'));
                 // mainOutcome = parseFloat(localStorage.getItem('totalOutcome'));
                 // saldoAmount = mainIncome + mainOutcome;
+
                 const user = localStorage.getItem('username');
                 const usernameField = document.getElementById('loggedInUser');
                 if (user) {
@@ -183,6 +185,7 @@
                 } else {
                     usernameField.textContent = 'Hello, User!';
                 }   
+
 
                 const logout = document.getElementById('logout');
                 logout.addEventListener('click', function(event) {
@@ -268,6 +271,9 @@
                 // saldoDisplay.textContent = numberWithCommas(saldoAmount.toFixed(2));
 
             });
+
+
+            
         </script>
 
     </body>
