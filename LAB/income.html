@@ -63,6 +63,7 @@
                     <li><a href="income.html"><p id="currPage">Income</p></a></li>
                     <li><a href="outcome.html">Outcome</a></li>
                     <li><a href="about.html">About Us</a></li>
+                    <li><a href="login.html" id="logout" class="ms-5">Log Out</a></li>
                 </ul>
             </div>
         </nav>
@@ -87,11 +88,11 @@
                     <br>
                     <select name="incomeTypeList" id="incomeTypeList">
                         <option style="display: none;"></option>
-                        <option value="makan">Makan</option>
-                        <option value="main">Main</option>
-                        <option value="edukasi">Edukasi</option>
-                        <option value="belanja">Belanja</option>
-                        <option value="lainnya">Lainnya</option>
+                        <option value="Makan">Makan</option>
+                        <option value="Main">Main</option>
+                        <option value="Edukasi">Edukasi</option>
+                        <option value="Belanja">Belanja</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>
                 <br>
@@ -100,20 +101,27 @@
         </div>
 
         <script>
-            document.getElementById('formIncome').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var transactionName = document.getElementById('incomeNama').value.trim();
-                var transactionNominal = document.getElementById('incomeNominal').value.trim();
-                var transactionType = document.getElementById('incomeTypeList').value;
-                
-                if (transactionName === '' || transactionNominal === '' || transactionType === '') {
-                    alert("Transaction incomplete, please fill out the form.");
-                } else {
-                    alert("Transaction success.");
-                }
-            });
-
+            // var totalIncome = 0;
             document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('formIncome').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var incomeTransactionName = document.getElementById('incomeNama').value.trim();
+                    var incomeTransactionNominal = document.getElementById('incomeNominal').value.trim();
+                    var incomeTransactionType = document.getElementById('incomeTypeList').value;
+                    
+                    if (incomeTransactionName === '' || incomeTransactionNominal === '' || incomeTransactionType === '') {
+                        alert("Transaction incomplete, please fill out the form.");
+                    } else {
+                        localStorage.setItem('incomeTransactionName', incomeTransactionName);
+                        localStorage.setItem('incomeTransactionNominal', incomeTransactionNominal);
+                        localStorage.setItem('incomeTransactionType', incomeTransactionType);
+                        window.location.href = 'main.html';
+                        // totalIncome += parseFloat(incomeTransactionNominal);
+                        // localStorage.setItem('totalIncome', totalIncome);
+                        alert("Transaction success.");
+                    }
+                });
+
                 const user = localStorage.getItem('username');
                 const usernameField = document.getElementById('loggedInUser');
                 const usernameIncome = document.getElementById('idIncome');
@@ -124,6 +132,13 @@
                     usernameField.textContent = 'Hello, User!';
                     usernameIncome.textContent =  "User's " + 'Income';
                 }
+
+                const logout = document.getElementById('logout');
+                logout.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+                    localStorage.clear(); 
+                    window.location.href = 'login.html'; 
+                });
             });
         </script>
     </body>

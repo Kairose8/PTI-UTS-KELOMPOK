@@ -63,12 +63,13 @@
                     <li><a href="income.html">Income</a></li>
                     <li><a href="outcome.html"><p id="currPage">Outcome</p></a></li>
                     <li><a href="about.html">About Us</a></li>
+                    <li><a href="login.html" id="logout" class="ms-5">Log Out</a></li>
                 </ul>
             </div>
         </nav>
 
         <div class="container">
-            <h1 id="idOutcome">Tono's </h1>
+            <h1 id="idOutcome"></h1>
             <form id="formOutcome">
                 <div class="outcomeNamaNominal">
                     <label for="name">Transaction name</label>
@@ -87,11 +88,11 @@
                     <br>
                     <select name="outcomeTypeList" id="outcomeTypeList">
                         <option style="display: none;"></option>
-                        <option value="makan">Makan</option>
-                        <option value="main">Main</option>
-                        <option value="edukasi">Edukasi</option>
-                        <option value="belanja">Belanja</option>
-                        <option value="lainnya">Lainnya</option>
+                        <option value="Makan">Makan</option>
+                        <option value="Main">Main</option>
+                        <option value="Edukasi">Edukasi</option>
+                        <option value="Belanja">Belanja</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>
                 <br>
@@ -100,20 +101,27 @@
         </div>
 
         <script>
-            document.getElementById('formOutcome').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var transactionName = document.getElementById('outcomeNama').value.trim();
-                var transactionNominal = document.getElementById('outcomeNominal').value.trim();
-                var transactionType = document.getElementById('outcomeTypeList').value;
-                
-                if (transactionName === '' || transactionNominal === '' || transactionType === '') {
-                    alert("Transaction incomplete, please fill out the form.");
-                } else {
-                    alert("Transaction success.");
-                }
-            });
-
+            // var totalOutcome = 0;
             document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('formOutcome').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var outcomeTransactionName = document.getElementById('outcomeNama').value.trim();
+                    var outcomeTransactionNominal = document.getElementById('outcomeNominal').value.trim();
+                    var outcomeTransactionType = document.getElementById('outcomeTypeList').value;
+                    
+                    if (outcomeTransactionName === '' || outcomeTransactionNominal === '' || outcomeTransactionType === '') {
+                        alert("Transaction incomplete, please fill out the form.");
+                    } else {
+                        localStorage.setItem('outcomeTransactionName', outcomeTransactionName);
+                        localStorage.setItem('outcomeTransactionNominal', outcomeTransactionNominal);
+                        localStorage.setItem('outcomeTransactionType', outcomeTransactionType);
+                        window.location.href = 'main.html';
+                        // totalOutcome -= parseFloat(outcomeTransactionNominal);
+                        // localStorage.setItem('totalOutcome', totalOutcome);
+                        alert("Transaction success.");
+                    }
+                });
+
                 const user = localStorage.getItem('username');
                 const usernameField = document.getElementById('loggedInUser');
                 const usernameOutcome = document.getElementById('idOutcome');
@@ -123,7 +131,14 @@
                 } else {
                     usernameField.textContent = 'Hello, User!';
                     usernameOutcome.textContent =  "User's " + 'Outcome';
-                }   
+                }
+                
+                const logout = document.getElementById('logout');
+                logout.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+                    localStorage.clear(); 
+                    window.location.href = 'login.html'; 
+                });
             });
 
         </script>
